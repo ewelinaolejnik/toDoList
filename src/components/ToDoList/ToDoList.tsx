@@ -1,17 +1,17 @@
 import React, { FunctionComponent } from 'react';
 import ToDo from './ToDo/ToDo';
-import { IToDoList } from '../../types';
+import { ToDoListProps } from '../../types';
 
 
-const ToDoList: FunctionComponent<IToDoList> = ({ toDoList }) => {
+const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
 
-    if (toDoList.length < 1) {
+    if (props.toDoList.length < 1) {
         return (<p>There's nothing to do :)</p>)
     }
 
     return (
         <div>
-            {toDoList.map(toDo => <ToDo key={toDo.id}
+            {props.toDoList.map(toDo => <ToDo key={toDo.id}
                 id={toDo.id}
                 title={toDo.title}
                 completed={toDo.completed} />)}

@@ -1,7 +1,7 @@
 import React, { FunctionComponent, FunctionComponentElement } from 'react';
-import { IToDo } from '../../../types';
+import { ToDoProps } from '../../../types';
 
-const ToDo: FunctionComponent<IToDo> = ({ id, title, completed }) => {
+const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed }) => {
     return (
         <div>
             <p>{title}</p>
