@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
     position: relative;
 `;
 
-const ToDoListTitle = styled.p`
+export const ToDoListTitle = styled.p`
     color: white;
     float:left;
     padding-left:20px;
