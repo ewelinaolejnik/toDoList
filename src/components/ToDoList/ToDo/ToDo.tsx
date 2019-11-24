@@ -2,9 +2,10 @@ import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
 import { ToDoProps } from '../../../types';
+import * as styles from '../../../shared/styles';
 
 const StyledToDo = styled.div`
-    border: 1px solid #55B5CC;
+    border: 1px solid ${styles.FirstMainColor};
     margin-top: 5px;
     padding:20px;
     background-color: white;

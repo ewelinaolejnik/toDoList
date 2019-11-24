@@ -11,7 +11,8 @@ export interface ToDo extends ToDoProps {
 export interface ToDoListProps {
     toDoList: Array<ToDoProps>,
     readonly maxToDoListCount: number,
-    loading: boolean
+    loading: boolean,
+    error: boolean
 }
 
 export interface AppState {
@@ -28,10 +29,5 @@ export interface ActionType {
 }
 
 export interface GetToDoListSuccessAction extends ActionType {
-    toDoList: Array<ToDoProps>,
-    loading: boolean
-}
-
-export interface GetToDoListFailureAction extends ActionType {
-    loading: boolean
+    toDoList: Array<ToDoProps>
 }

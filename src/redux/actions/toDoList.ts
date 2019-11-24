@@ -1,17 +1,15 @@
 import { ToDoListAction } from './actionTypes';
-import { ActionType, GetToDoListSuccessAction, ToDoProps, GetToDoListFailureAction } from '../../types';
+import { ActionType, GetToDoListSuccessAction, ToDoProps } from '../../types';
 
 export const getToDoList = (): ActionType => ({
     type: ToDoListAction.GetToDoList
 });
 
-export const getToDoListSuccess = (toDoList: Array<ToDoProps>, loading: boolean): GetToDoListSuccessAction => ({
+export const getToDoListSuccess = (toDoList: Array<ToDoProps>): GetToDoListSuccessAction => ({
     type: ToDoListAction.GetToDoListSuccess,
-    toDoList,
-    loading
+    toDoList
 });
 
-export const getToDoListFailure = (loading: boolean): GetToDoListFailureAction => ({
-    type: ToDoListAction.GetToDoListFailure,
-    loading
+export const getToDoListFailure = (): ActionType => ({
+    type: ToDoListAction.GetToDoListFailure
 });

@@ -5,7 +5,8 @@ import { ToDoListProps, ActionType, GetToDoListSuccessAction } from '../../types
 const initialState: ToDoListProps = {
     toDoList: [],
     maxToDoListCount: 10,
-    loading: true
+    loading: true,
+    error: false
 };
 
 const toDoListProps = (state: ToDoListProps = initialState, action: ActionType) => {
@@ -15,11 +16,17 @@ const toDoListProps = (state: ToDoListProps = initialState, action: ActionType) 
                 ...state
             };
         case ToDoListAction.GetToDoListSuccess:
-            const getToDoListAction = action as GetToDoListSuccessAction;
+            const getToDoListSuccessAction = action as GetToDoListSuccessAction;
             return {
                 ...state,
-                toDoList: getToDoListAction.toDoList,
-                loading: getToDoListAction.loading
+                toDoList: getToDoListSuccessAction.toDoList,
+                loading: false
+            };
+        case ToDoListAction.GetToDoListFailure:
+            return {
+                ...state,
+                error: true,
+                loading: false
             };
         default:
             return state;

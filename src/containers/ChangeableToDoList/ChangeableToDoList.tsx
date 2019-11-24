@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dispatch, Action } from 'redux';
+import { Dispatch } from 'redux';
 
 import ToDoList from '../../components/ToDoList/ToDoList';
 import { getToDoList } from '../../redux/actions/toDoList';
-import { ChangeableToDoListProps, AppState, ActionType, ToDoProps } from '../../types';
+import { ChangeableToDoListProps, AppState, ActionType } from '../../types';
+
+import ErrorBoundary from '../../ErrorBoundary';
 
 
 class ChangeableToDoList extends Component<ChangeableToDoListProps> {
@@ -15,7 +17,9 @@ class ChangeableToDoList extends Component<ChangeableToDoListProps> {
 
     render() {
         return (
-            <ToDoList {...this.props.toDoListProps} />
+            <ErrorBoundary>
+                <ToDoList {...this.props.toDoListProps} />
+            </ErrorBoundary>
         );
     }
 }
