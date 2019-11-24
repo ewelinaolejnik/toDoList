@@ -1,7 +1,14 @@
 import React from 'react';
 
-const Layout: React.FunctionComponent<{}> = props => {
-    return null;
+import Header from '../Header/Header';
+import ChangeableToDoList from '../../containers/ChangeableToDoList/ChangeableToDoList';
+
+
+const Layout: React.FunctionComponent = props => {
+    return <div>
+        <Header />
+        <ChangeableToDoList />
+    </div>
 };
 
 export default Layout;
