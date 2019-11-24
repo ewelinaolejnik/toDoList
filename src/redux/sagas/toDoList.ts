@@ -13,8 +13,8 @@ export function* getToDoListSaga() {
         const response = yield api.get(endpoint + queryParams);
         let toDoListData: ToDo[] = [];
         toDoListData = [...response.data];
-        yield put(getToDoListSuccess(toDoListData));
+        yield put(getToDoListSuccess(toDoListData, false));
     } catch (error) {
-
+        console.log(error);
     }
 }

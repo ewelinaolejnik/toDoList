@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ToDoList from './ToDoList';
+import ToDoList, { Spinner } from './ToDoList';
 import ToDo from './ToDo/ToDo';
 import { ToDoListProps } from '../../types';
+import spinner from '../../assets/spinner.gif';
 
 describe('<ToDoList/>', () => {
     let toDoList: any,
@@ -12,7 +13,8 @@ describe('<ToDoList/>', () => {
     beforeEach(() => {
         props = {
             toDoList: [],
-            maxToDoListCount: 4
+            maxToDoListCount: 4,
+            loading: false
         };
         toDoList = shallow(<ToDoList {...props} />);
     });
@@ -73,5 +75,15 @@ describe('<ToDoList/>', () => {
         ];
         toDoList.setProps({ toDoList: toDos });
         expect(toDoList.find(ToDo)).toHaveLength(props.maxToDoListCount);
+    });
+
+    it('shows spinner when loading prop is true', () => {
+        props = {
+            toDoList: [],
+            maxToDoListCount: 4,
+            loading: true
+        };
+        toDoList = shallow(<ToDoList {...props} />);
+        expect(toDoList.contains(<Spinner src={spinner} alt="loading..." />)).toEqual(true);
     });
 });
