@@ -14,7 +14,8 @@ describe('<ToDoList/>', () => {
         props = {
             toDoList: [],
             maxToDoListCount: 4,
-            loading: false
+            loading: false,
+            error: false
         };
         toDoList = shallow(<ToDoList {...props} />);
     });
@@ -78,12 +79,7 @@ describe('<ToDoList/>', () => {
     });
 
     it('shows spinner when loading prop is true', () => {
-        props = {
-            toDoList: [],
-            maxToDoListCount: 4,
-            loading: true
-        };
-        toDoList = shallow(<ToDoList {...props} />);
+        toDoList.setProps({ loading: true });
         expect(toDoList.contains(<Spinner src={spinner} alt="loading..." />)).toEqual(true);
     });
 });

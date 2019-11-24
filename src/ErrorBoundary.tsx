@@ -7,9 +7,6 @@ const ErrorMessage = styled.p`
     ${styles.Center}
     color: red;
     font-size: 1em;
-     margin-left: auto;
-  margin-right: auto;
-  width:30%;
 `;
 
 class ErrorBoundary extends Component<any, any> {
