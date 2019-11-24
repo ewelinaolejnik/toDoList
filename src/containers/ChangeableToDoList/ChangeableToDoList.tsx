@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Dispatch, Action } from 'redux';
 
 import ToDoList from '../../components/ToDoList/ToDoList';
-import * as actionTypes from '../../redux/actions/actionTypes';
-import { ChangeableToDoListProps, AppState, ActionType } from '../../types';
+import { getToDoList } from '../../redux/actions/toDoList';
+import { ChangeableToDoListProps, AppState, ActionType, ToDoProps } from '../../types';
 
 
 class ChangeableToDoList extends Component<ChangeableToDoListProps> {
@@ -25,7 +25,7 @@ export const mapStateToProps = (state: AppState) => ({
 });
 
 export const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
-    onGetToDoList: () => dispatch({ type: actionTypes.GET_TO_DO_LIST })
+    onGetToDoList: () => dispatch(getToDoList())
 });
 
 

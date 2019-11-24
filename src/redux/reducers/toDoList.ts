@@ -1,16 +1,23 @@
-import * as actionTypes from '../actions/actionTypes';
-import { ToDoListProps, ActionType } from '../../types';
+import { ToDoListAction } from '../actions/actionTypes';
+import { ToDoListProps, ActionType, GetToDoListSuccessAction } from '../../types';
 
 
 const initialState: ToDoListProps = {
-    toDoList: []
+    toDoList: [],
+    maxToDoListCount: 10
 };
 
 const toDoListProps = (state: ToDoListProps = initialState, action: ActionType) => {
     switch (action.type) {
-        case actionTypes.GET_TO_DO_LIST:
+        case ToDoListAction.GetToDoList:
             return {
                 ...state
+            };
+        case ToDoListAction.GetToDoListSuccess:
+            const getToDoListAction = action as GetToDoListSuccessAction;
+            return {
+                ...state,
+                toDoList: getToDoListAction.toDoList
             };
         default:
             return state;

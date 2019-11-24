@@ -11,7 +11,9 @@ const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
 
     return (
         <div>
-            {props.toDoList.map(toDo => <ToDo key={toDo.id}
+            {props.toDoList.filter((toDo, index) => {
+                return index < props.maxToDoListCount;
+            }).map(toDo => <ToDo key={toDo.id}
                 id={toDo.id}
                 title={toDo.title}
                 completed={toDo.completed} />)}

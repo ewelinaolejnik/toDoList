@@ -4,8 +4,13 @@ export interface ToDoProps {
     completed: boolean
 }
 
+export interface ToDo extends ToDoProps {
+    userId: number
+}
+
 export interface ToDoListProps {
-    toDoList: Array<ToDoProps>
+    toDoList: Array<ToDoProps>,
+    readonly maxToDoListCount: number
 }
 
 export interface AppState {
@@ -19,4 +24,8 @@ export interface ChangeableToDoListProps {
 
 export interface ActionType {
     type: string
+}
+
+export interface GetToDoListSuccessAction extends ActionType {
+    toDoList: Array<ToDoProps>
 }

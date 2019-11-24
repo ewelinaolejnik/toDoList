@@ -1,6 +1,11 @@
-import * as actionTypes from './actionTypes';
-import { ActionType } from '../../types';
+import { ToDoListAction } from './actionTypes';
+import { ActionType, GetToDoListSuccessAction, ToDoProps } from '../../types';
 
 export const getToDoList = (): ActionType => ({
-    type: actionTypes.GET_TO_DO_LIST
+    type: ToDoListAction.GetToDoList
+});
+
+export const getToDoListSuccess = (toDoList: Array<ToDoProps>): GetToDoListSuccessAction => ({
+    type: ToDoListAction.GetToDoListSuccess,
+    toDoList
 });
