@@ -33,8 +33,7 @@ const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
             }).map(toDo => <ToDo key={toDo.id}
                 id={toDo.id}
                 title={toDo.title}
-                completed={toDo.completed}
-                onUpdateToDo={props.onUpdateToDo} />)}
+                completed={toDo.completed} />)}
         </div>
     );
 }

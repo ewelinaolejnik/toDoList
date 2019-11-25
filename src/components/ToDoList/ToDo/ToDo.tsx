@@ -1,8 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
+import { Dispatch } from 'redux';
 
-import { ToDoProps } from '../../../types';
+import { ToDoProps, ActionType, ToDoState } from '../../../types';
 import * as styles from '../../../shared/styles';
+import { updateToDo } from '../../../redux/actions/toDoList';
+import { connect } from 'react-redux';
 
 
 const StyledToDo = styled.div`
@@ -40,4 +43,8 @@ const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpdateToDo
     );
 };
 
-export default ToDo;
+export const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
+    onUpdateToDo: (toDoToBeUpdate: ToDoState) => dispatch(updateToDo(toDoToBeUpdate))
+});
+
+export default connect(null, mapDispatchToProps)(ToDo);

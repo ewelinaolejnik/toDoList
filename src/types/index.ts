@@ -9,7 +9,6 @@ export interface ToDoState {
 }
 
 export interface ToDoListProps extends ToDoListState {
-    onUpdateToDo: (toDoToBeUpdate: ToDoState) => UpdateToDoAction
 }
 
 export interface ToDoListState {
@@ -25,8 +24,7 @@ export interface AppState {
 
 export interface ChangeableToDoListProps {
     toDoListProps: ToDoListState,
-    onGetToDoList: () => ActionType,
-    onUpdateToDo: (toDoToBeUpdate: ToDoState) => UpdateToDoAction
+    onGetToDoList: () => ActionType
 }
 
 export interface ActionType {
