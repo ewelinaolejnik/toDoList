@@ -18,6 +18,7 @@ const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
     }
 
     if (props.loading) {
+        //TODO: move spinner to a separate component
         return <Spinner src={spinner} alt="loading..." />
     }
 
@@ -32,7 +33,8 @@ const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
             }).map(toDo => <ToDo key={toDo.id}
                 id={toDo.id}
                 title={toDo.title}
-                completed={toDo.completed} />)}
+                completed={toDo.completed}
+                onUpdateToDo={props.onUpdateToDo} />)}
         </div>
     );
 }

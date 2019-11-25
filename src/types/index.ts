@@ -1,27 +1,32 @@
-export interface ToDoProps {
+export interface ToDoProps extends ToDoState {
+    onUpdateToDo: (toDoToBeUpdate: ToDoState) => UpdateToDoAction
+}
+
+export interface ToDoState {
     id: number,
     title: string,
     completed: boolean
 }
 
-export interface ToDo extends ToDoProps {
-    userId: number
+export interface ToDoListProps extends ToDoListState {
+    onUpdateToDo: (toDoToBeUpdate: ToDoState) => UpdateToDoAction
 }
 
-export interface ToDoListProps {
-    toDoList: Array<ToDoProps>,
+export interface ToDoListState {
+    toDoList: Array<ToDoState>,
     readonly maxToDoListCount: number,
     loading: boolean,
     error: boolean
 }
 
 export interface AppState {
-    toDoListProps: ToDoListProps
+    toDoListProps: ToDoListState
 }
 
 export interface ChangeableToDoListProps {
-    toDoListProps: ToDoListProps,
-    onGetToDoList: () => ActionType
+    toDoListProps: ToDoListState,
+    onGetToDoList: () => ActionType,
+    onUpdateToDo: (toDoToBeUpdate: ToDoState) => UpdateToDoAction
 }
 
 export interface ActionType {
@@ -29,5 +34,14 @@ export interface ActionType {
 }
 
 export interface GetToDoListSuccessAction extends ActionType {
-    toDoList: Array<ToDoProps>
+    toDoList: Array<ToDoState>
+}
+
+export interface UpdateToDoSuccessAction extends ActionType {
+    updatedToDo: ToDoState
+}
+
+export interface UpdateToDoAction extends ActionType {
+    toDoToBeUpdate: ToDoState
+
 }
