@@ -1,14 +1,20 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
 import { ToDoProps, ActionType, ToDoState } from '../../../types';
 import * as styles from '../../../shared/styles';
 import { updateToDo } from '../../../redux/actions/toDoList';
-import { connect } from 'react-redux';
+import checkmark from '../../../assets/checkmark.png';
+
 
 
 const StyledToDo = styled.div`
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: flex-start;
     border: 1px solid ${styles.FirstMainColor};
     margin-top: 5px;
     padding:20px;
@@ -18,13 +24,47 @@ const StyledToDo = styled.div`
 `
 
 const ToDoTitle = styled.p`
-    text-align: left;
+    flex: 10 0 0px;
+    text-align:left;
 `;
 
-const ToDoStatus = styled.input`
-    float:left;
-    border: 1px solid #6cc0e5;
-`;
+const ToDoStatus = styled.div<{ completed: boolean, toDoId: number }>`
+    position:relative;
+    flex: 0.05 1 20px;
+    width: 20px;
+    height:20px;
+
+#toDoStatusCheckbox${props => props.toDoId} {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+}
+
+#toDoStatusLabel {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    cursor: pointer;
+    background-color: #eee;
+    width: 20px;
+    height:20px;
+    border-radius:5px;
+}
+
+#toDoStatusLabel:before {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 20px;
+    height:20px;
+    content:'';
+    border-radius:5px;
+  ${props => (props.completed ? `content:url(${checkmark}); background: ${styles.SecondMainColor};` : '')};
+}
+
+`
 
 const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpdateToDo }) => {
 
@@ -35,9 +75,12 @@ const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpdateToDo
 
     return (
         <StyledToDo>
-            <ToDoStatus type="checkbox"
-                checked={completed}
-                onChange={handleStatusChange} />
+            <ToDoStatus toDoId={id} completed={completed}>
+                <input id={'toDoStatusCheckbox' + id} type="checkbox"
+                    checked={completed}
+                    onChange={handleStatusChange} />
+                <label htmlFor={'toDoStatusCheckbox' + id} id="toDoStatusLabel"></label>
+            </ToDoStatus>
             <ToDoTitle>{title}</ToDoTitle>
         </StyledToDo>
     );
