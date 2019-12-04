@@ -1,20 +1,21 @@
 import { ToDoListAction } from '../actions/actionTypes';
-import { ToDoListProps, ActionType, GetToDoListSuccessAction } from '../../types';
+import { ToDoListState, ActionType, GetToDoListSuccessAction, UpdateToDoSuccessAction } from '../../types';
 
 
-const initialState: ToDoListProps = {
+const initialState: ToDoListState = {
     toDoList: [],
     maxToDoListCount: 10,
     loading: true,
     error: false
 };
 
-const toDoListProps = (state: ToDoListProps = initialState, action: ActionType) => {
+const toDoListProps = (state: ToDoListState = initialState, action: ActionType) => {
     switch (action.type) {
         case ToDoListAction.GetToDoList:
             return {
-                ...state
-            };
+                ...state,
+                loading: true
+            }
         case ToDoListAction.GetToDoListSuccess:
             const getToDoListSuccessAction = action as GetToDoListSuccessAction;
             return {
@@ -26,6 +27,21 @@ const toDoListProps = (state: ToDoListProps = initialState, action: ActionType) 
             return {
                 ...state,
                 error: true,
+                loading: false
+            };
+        case ToDoListAction.UpdateToDo:
+            return {
+                ...state,
+                loading: true
+            }
+        case ToDoListAction.UpdateToDoSuccess:
+            const updatedToDo = (action as UpdateToDoSuccessAction).updatedToDo;
+            const toDoList = [...state.toDoList];
+            const updatedToDoIndex = toDoList.findIndex(toDo => toDo.id === updatedToDo.id);
+            toDoList[updatedToDoIndex] = updatedToDo;
+            return {
+                ...state,
+                toDoList,
                 loading: false
             };
         default:

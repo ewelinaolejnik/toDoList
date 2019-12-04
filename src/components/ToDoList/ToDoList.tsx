@@ -18,6 +18,7 @@ const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
     }
 
     if (props.loading) {
+        //TODO: move spinner to a separate component
         return <Spinner src={spinner} alt="loading..." />
     }
 
