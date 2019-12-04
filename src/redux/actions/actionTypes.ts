@@ -4,5 +4,8 @@ export enum ToDoListAction {
     GetToDoListFailure = "GET_TO_DO_LIST_FAILURE",
 
     UpdateToDo = "UPDATE_TO_DO",
-    UpdateToDoSuccess = "UPDATE_TO_DO_SUCCESS"
+    UpdateToDoSuccess = "UPDATE_TO_DO_SUCCESS",
+
+    DeleteToDo = "DELETE_TO_DO",
+    DeleteToDoSuccess = "DELETE_TO_DO_SUCCESS"
 }

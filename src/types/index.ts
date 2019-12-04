@@ -1,5 +1,6 @@
 export interface ToDoProps extends ToDoState {
-    onUpdateToDo: (toDoToBeUpdate: ToDoState) => UpdateToDoAction
+    onUpdateToDo: (toDoToBeUpdate: ToDoState) => UpdateToDoAction,
+    onRemoveToDo: (id: number) => DeleteToDoAction
 }
 
 export interface ToDoState {
@@ -41,5 +42,8 @@ export interface UpdateToDoSuccessAction extends ActionType {
 
 export interface UpdateToDoAction extends ActionType {
     toDoToBeUpdate: ToDoState
+}
 
+export interface DeleteToDoAction extends ActionType {
+    id: number
 }

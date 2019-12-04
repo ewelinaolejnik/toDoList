@@ -15,7 +15,7 @@ const toDoListProps = (state: ToDoListState = initialState, action: ActionType) 
             return {
                 ...state,
                 loading: true
-            }
+            };
         case ToDoListAction.GetToDoListSuccess:
             const getToDoListSuccessAction = action as GetToDoListSuccessAction;
             return {
@@ -33,7 +33,7 @@ const toDoListProps = (state: ToDoListState = initialState, action: ActionType) 
             return {
                 ...state,
                 loading: true
-            }
+            };
         case ToDoListAction.UpdateToDoSuccess:
             const updatedToDo = (action as UpdateToDoSuccessAction).updatedToDo;
             const toDoList = [...state.toDoList];
@@ -42,6 +42,16 @@ const toDoListProps = (state: ToDoListState = initialState, action: ActionType) 
             return {
                 ...state,
                 toDoList,
+                loading: false
+            };
+        case ToDoListAction.DeleteToDo:
+            return {
+                ...state,
+                loading: true
+            };
+        case ToDoListAction.DeleteToDoSuccess:
+            return {
+                ...state,
                 loading: false
             };
         default:
