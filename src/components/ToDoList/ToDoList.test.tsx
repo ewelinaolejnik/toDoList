@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ToDoList, { Spinner } from './ToDoList';
+import ToDoList from './ToDoList';
 import ToDo from './ToDo/ToDo';
 import { ToDoListProps } from '../../types';
-import spinner from '../../assets/spinner.gif';
+import Spinner from '../Spinner/Spinner';
 
 describe('<ToDoList/>', () => {
     let toDoList: any,
@@ -80,6 +80,6 @@ describe('<ToDoList/>', () => {
 
     it('shows spinner when loading prop is true', () => {
         toDoList.setProps({ loading: true });
-        expect(toDoList.contains(<Spinner src={spinner} alt="loading..." />)).toEqual(true);
+        expect(toDoList.contains(<Spinner />)).toEqual(true);
     });
 });
