@@ -10,8 +10,8 @@ export const getToDoListSuccess = (toDoList: Array<ToDoState>): GetToDoListSucce
     toDoList
 });
 
-export const getToDoListFailure = (): ActionType => ({
-    type: ToDoListAction.GetToDoListFailure
+export const toDoListFailure = (): ActionType => ({
+    type: ToDoListAction.ToDoListFailure
 });
 
 export const updateToDo = (toDoToBeUpdate: ToDoState): UpdateToDoAction => ({
