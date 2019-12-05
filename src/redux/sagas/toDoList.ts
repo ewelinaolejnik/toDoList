@@ -31,9 +31,8 @@ export function* updateToDoSaga(action: UpdateToDoAction) {
 
 export function* deleteToDoSaga(action: DeleteToDoAction) {
     try {
-        const response = yield api.delete(endpoint + `/${action.id}`);
-        console.log(response);
-        yield put(deleteToDoSuccess());
+        yield api.delete(endpoint + `/${action.id}`);
+        yield put(deleteToDoSuccess(action.id));
     } catch (error) {
         yield put(getToDoListFailure());
     }

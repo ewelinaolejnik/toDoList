@@ -1,5 +1,5 @@
 import { ToDoListAction } from '../actions/actionTypes';
-import { ToDoListState, ActionType, GetToDoListSuccessAction, UpdateToDoSuccessAction } from '../../types';
+import { ToDoListState, ActionType, GetToDoListSuccessAction, UpdateToDoSuccessAction, DeleteToDoSuccessAction } from '../../types';
 
 
 const initialState: ToDoListState = {
@@ -35,25 +35,32 @@ const toDoListProps = (state: ToDoListState = initialState, action: ActionType) 
                 loading: true
             };
         case ToDoListAction.UpdateToDoSuccess:
-            const updatedToDo = (action as UpdateToDoSuccessAction).updatedToDo;
-            const toDoList = [...state.toDoList];
-            const updatedToDoIndex = toDoList.findIndex(toDo => toDo.id === updatedToDo.id);
-            toDoList[updatedToDoIndex] = updatedToDo;
-            return {
-                ...state,
-                toDoList,
-                loading: false
-            };
+            {
+                const updatedToDo = (action as UpdateToDoSuccessAction).updatedToDo;
+                const toDoList = [...state.toDoList];
+                const updatedToDoIndex = toDoList.findIndex(toDo => toDo.id === updatedToDo.id);
+                toDoList[updatedToDoIndex] = updatedToDo;
+                return {
+                    ...state,
+                    toDoList,
+                    loading: false
+                };
+            }
         case ToDoListAction.DeleteToDo:
             return {
                 ...state,
                 loading: true
             };
         case ToDoListAction.DeleteToDoSuccess:
-            return {
-                ...state,
-                loading: false
-            };
+            {
+                const deletedToDoId = (action as DeleteToDoSuccessAction).id;
+                const toDoList = state.toDoList.filter(toDo => toDo.id !== deletedToDoId);
+                return {
+                    ...state,
+                    toDoList,
+                    loading: false
+                };
+            }
         default:
             return state;
     }

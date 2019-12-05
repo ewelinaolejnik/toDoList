@@ -47,3 +47,7 @@ export interface UpdateToDoAction extends ActionType {
 export interface DeleteToDoAction extends ActionType {
     id: number
 }
+
+export interface DeleteToDoSuccessAction extends ActionType {
+    id: number
+}

@@ -1,5 +1,5 @@
 import { ToDoListAction } from './actionTypes';
-import { ActionType, GetToDoListSuccessAction, ToDoState, UpdateToDoSuccessAction, UpdateToDoAction, DeleteToDoAction } from '../../types';
+import { ActionType, GetToDoListSuccessAction, ToDoState, UpdateToDoSuccessAction, UpdateToDoAction, DeleteToDoAction, DeleteToDoSuccessAction } from '../../types';
 
 export const getToDoList = (): ActionType => ({
     type: ToDoListAction.GetToDoList
@@ -29,6 +29,7 @@ export const deleteToDo = (id: number): DeleteToDoAction => ({
     id
 });
 
-export const deleteToDoSuccess = (): ActionType => ({
-    type: ToDoListAction.DeleteToDoSuccess
+export const deleteToDoSuccess = (id: number): DeleteToDoSuccessAction => ({
+    type: ToDoListAction.DeleteToDoSuccess,
+    id
 });
