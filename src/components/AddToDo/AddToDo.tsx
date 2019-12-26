@@ -1,8 +1,13 @@
 import React, { FunctionComponent } from 'react';
-
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import { ActionType, ToDoState, AppState, AddToDoProps } from '../../types';
 import * as styles from '../../shared/styles';
+import { addToDo, updateNewToDo } from '../../redux/actions/toDoList';
+import toDoListProps from '../../redux/reducers/toDoList';
+
 
 const StyledAddToDo = styled.div`
     display:flex;
@@ -33,13 +38,23 @@ const AddToDoButton = styled.button`
     margin: 10px;
 `;
 
-const AddToDo: FunctionComponent<{}> = props => {
+const AddToDo: FunctionComponent<AddToDoProps> = ({ newToDo, onAddToDo, onUpdateNewToDo }) => {
+    const handleChangeTitle = (event: React.FormEvent<HTMLInputElement>) => {
+        const title: string = event.currentTarget.value;
+        onUpdateNewToDo({ id: 0, completed: false, title });
+    }
+
     return (
         <StyledAddToDo>
-            <AddToDoInput placeholder="New To Do..." />
-            <AddToDoButton>Add To Do</AddToDoButton>
+            <AddToDoInput value={newToDo.title} onChange={handleChangeTitle} placeholder="New To Do..." />
+            <AddToDoButton onClick={() => onAddToDo(newToDo)}>Add To Do</AddToDoButton>
         </StyledAddToDo>
     );
 };
 
-export default AddToDo;
+const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
+    onAddToDo: (toDoToBeAdd: ToDoState) => dispatch(addToDo(toDoToBeAdd)),
+    onUpdateNewToDo: (newToDo: ToDoState) => dispatch(updateNewToDo(newToDo))
+});
+
+export default connect(null, mapDispatchToProps)(AddToDo);

@@ -19,7 +19,7 @@ class ChangeableToDoList extends Component<ChangeableToDoListProps> {
     render() {
         return (
             <ErrorBoundary>
-                <AddToDo />
+                <AddToDo newToDo={this.props.toDoListProps.newToDo} />
                 <ToDoList {...this.props.toDoListProps} />
             </ErrorBoundary>
         );

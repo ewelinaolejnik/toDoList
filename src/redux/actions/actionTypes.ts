@@ -10,5 +10,7 @@ export enum ToDoListAction {
     DeleteToDoSuccess = "DELETE_TO_DO_SUCCESS",
 
     AddToDo = "ADD_TO_DO",
-    AddToDoSuccess = "ADD_TO_DO_SUCCESS"
+    AddToDoSuccess = "ADD_TO_DO_SUCCESS",
+
+    UpdateNewToDo = "UPDATE_NEW_TO_DO"
 }

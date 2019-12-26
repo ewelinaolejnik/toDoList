@@ -6,7 +6,12 @@ const initialState: types.ToDoListState = {
     toDoList: [],
     maxToDoListCount: 10,
     loading: true,
-    error: false
+    error: false,
+    newToDo: {
+        id: 0,
+        title: '',
+        completed: false
+    }
 };
 
 const updateState = (oldState: types.ToDoListState, updatedState: any) => {

@@ -16,7 +16,8 @@ export interface ToDoListState {
     toDoList: Array<ToDoState>,
     readonly maxToDoListCount: number,
     loading: boolean,
-    error: boolean
+    error: boolean,
+    newToDo: ToDoState
 }
 
 export interface AppState {
@@ -27,6 +28,14 @@ export interface ChangeableToDoListProps {
     toDoListProps: ToDoListState,
     onGetToDoList: () => ActionType
 }
+
+export interface AddToDoProps {
+    newToDo: ToDoState,
+    onAddToDo: (toDoToBeAdd: ToDoState) => AddToDoAction,
+    onUpdateNewToDo: (newToDo: ToDoState) => UpdateNewToDoAction
+}
+
+
 
 export interface ActionType {
     type: string
@@ -58,4 +67,8 @@ export interface AddToDoAction extends ActionType {
 
 export interface AddToDoSuccessAction extends ActionType {
     newToDo: ToDoState
+}
+
+export interface UpdateNewToDoAction extends ActionType {
+    updatedNewToDo: ToDoState
 }

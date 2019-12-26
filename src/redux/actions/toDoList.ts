@@ -43,3 +43,8 @@ export const addToDoSuccess = (newToDo: types.ToDoState): types.AddToDoSuccessAc
     type: ToDoListAction.AddToDoSuccess,
     newToDo
 });
+
+export const updateNewToDo = (updatedNewToDo: types.ToDoState): types.UpdateNewToDoAction => ({
+    type: ToDoListAction.UpdateNewToDo,
+    updatedNewToDo
+})
