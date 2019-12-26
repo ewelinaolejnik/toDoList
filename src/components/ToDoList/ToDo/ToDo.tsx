@@ -65,7 +65,7 @@ const ToDoStatus = styled.div<{ completed: boolean, toDoId: number }>`
   ${props => (props.completed ? `content:url(${checkmark}); background: ${styles.SecondMainColor};` : '')};
 }
 `
-const RemoveButton = styled.button`
+export const RemoveButton = styled.button`
     flex: 0.05 1 20px;
     padding: 20px;
     background-color: ${styles.SecondMainColor};
@@ -75,7 +75,7 @@ const RemoveButton = styled.button`
     font-size: 1em;
 `
 
-const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpdateToDo, onRemoveToDo }) => {
+export const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpdateToDo, onRemoveToDo }) => {
 
     const handleStatusChange = (event: React.FormEvent<HTMLInputElement>) => {
         const newStatus = event.currentTarget.checked;
