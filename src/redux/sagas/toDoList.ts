@@ -1,8 +1,8 @@
 import { put } from "redux-saga/effects";
 
 import api from '../../api';
-import { ToDoState, UpdateToDoAction } from '../../types';
-import { getToDoListSuccess, getToDoListFailure, updateToDoSuccess } from '../actions/toDoList';
+import { ToDoState, UpdateToDoAction, DeleteToDoAction } from '../../types';
+import { getToDoListSuccess, toDoListFailure, updateToDoSuccess, deleteToDoSuccess } from '../actions/toDoList';
 
 const endpoint: string = "todos",
     userId: number = 10;
@@ -15,7 +15,7 @@ export function* getToDoListSaga() {
         toDoListData = [...response.data];
         yield put(getToDoListSuccess(toDoListData));
     } catch (error) {
-        yield put(getToDoListFailure());
+        yield put(toDoListFailure());
     }
 }
 
@@ -25,7 +25,15 @@ export function* updateToDoSaga(action: UpdateToDoAction) {
         const updatedToDo: ToDoState = { ...response.data };
         yield put(updateToDoSuccess(updatedToDo));
     } catch (error) {
-        console.log("fail");
-        yield put(getToDoListFailure());
+        yield put(toDoListFailure());
+    }
+}
+
+export function* deleteToDoSaga(action: DeleteToDoAction) {
+    try {
+        yield api.delete(endpoint + `/${action.id}`);
+        yield put(deleteToDoSuccess(action.id));
+    } catch (error) {
+        yield put(toDoListFailure());
     }
 }

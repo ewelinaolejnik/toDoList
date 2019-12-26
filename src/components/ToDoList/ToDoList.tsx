@@ -1,15 +1,13 @@
 import React, { FunctionComponent } from 'react';
-import styled from 'styled-components';
+
 
 import ToDo from './ToDo/ToDo';
 import { ToDoListProps } from '../../types';
+import Spinner from '../Spinner/Spinner';
 
-import spinner from '../../assets/spinner.gif';
-import * as styles from '../../shared/styles';
 
-export const Spinner = styled.img`
-  ${styles.Center}
-`
+
+
 
 const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
 
@@ -18,8 +16,7 @@ const ToDoList: FunctionComponent<ToDoListProps> = (props) => {
     }
 
     if (props.loading) {
-        //TODO: move spinner to a separate component
-        return <Spinner src={spinner} alt="loading..." />
+        return <Spinner />
     }
 
     if (props.toDoList.length < 1) {

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { ToDoProps, ActionType, ToDoState } from '../../../types';
 import * as styles from '../../../shared/styles';
-import { updateToDo } from '../../../redux/actions/toDoList';
+import { updateToDo, deleteToDo } from '../../../redux/actions/toDoList';
 import checkmark from '../../../assets/checkmark.png';
 
 
@@ -26,6 +26,7 @@ const StyledToDo = styled.div`
 const ToDoTitle = styled.p`
     flex: 10 0 0px;
     text-align:left;
+    padding: 0px 20px;
 `;
 
 const ToDoStatus = styled.div<{ completed: boolean, toDoId: number }>`
@@ -63,10 +64,18 @@ const ToDoStatus = styled.div<{ completed: boolean, toDoId: number }>`
     border-radius:5px;
   ${props => (props.completed ? `content:url(${checkmark}); background: ${styles.SecondMainColor};` : '')};
 }
-
+`
+export const RemoveButton = styled.button`
+    flex: 0.05 1 20px;
+    padding: 20px;
+    background-color: ${styles.SecondMainColor};
+    border-radius: 20px;
+    outline: none !important;
+    color: white;
+    font-size: 1em;
 `
 
-const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpdateToDo }) => {
+export const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpdateToDo, onRemoveToDo }) => {
 
     const handleStatusChange = (event: React.FormEvent<HTMLInputElement>) => {
         const newStatus = event.currentTarget.checked;
@@ -82,12 +91,14 @@ const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpdateToDo
                 <label htmlFor={'toDoStatusCheckbox' + id} id="toDoStatusLabel"></label>
             </ToDoStatus>
             <ToDoTitle>{title}</ToDoTitle>
+            {completed && <RemoveButton onClick={() => onRemoveToDo(id)}>Remove</RemoveButton>}
         </StyledToDo>
     );
 };
 
 export const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
-    onUpdateToDo: (toDoToBeUpdate: ToDoState) => dispatch(updateToDo(toDoToBeUpdate))
+    onUpdateToDo: (toDoToBeUpdate: ToDoState) => dispatch(updateToDo(toDoToBeUpdate)),
+    onRemoveToDo: (id: number) => dispatch(deleteToDo(id))
 });
 
 export default connect(null, mapDispatchToProps)(ToDo);
