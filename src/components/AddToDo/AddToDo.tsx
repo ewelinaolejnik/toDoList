@@ -3,10 +3,9 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { ActionType, ToDoState, AppState, AddToDoProps } from '../../types';
+import { ActionType, ToDoState, AddToDoProps } from '../../types';
 import * as styles from '../../shared/styles';
 import { addToDo, updateNewToDo } from '../../redux/actions/toDoList';
-import toDoListProps from '../../redux/reducers/toDoList';
 
 
 const StyledAddToDo = styled.div`
