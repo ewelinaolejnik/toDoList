@@ -51,3 +51,11 @@ export interface DeleteToDoAction extends ActionType {
 export interface DeleteToDoSuccessAction extends ActionType {
     id: number
 }
+
+export interface AddToDoAction extends ActionType {
+    toDoToAdd: ToDoState
+}
+
+export interface AddToDoSuccessAction extends ActionType {
+    newToDo: ToDoState
+}
