@@ -81,7 +81,11 @@ const toDoListProps = (state: types.ToDoListState = initialState, action: types.
             });
 
         case ToDoListAction.AddToDo:
-            return updateState(state, { loading: true, newToDo: initialState.newToDo });
+            return updateState(state, {
+                loading: true, newToDo: initialState.newToDo, addToDoErrors: {
+                    maxToDosExceeded: false, newToDoTitleEmpty: false
+                }
+            });
 
         case ToDoListAction.AddToDoSuccess:
             const newToDo: types.ToDoState = (action as types.AddToDoSuccessAction).newToDo;
