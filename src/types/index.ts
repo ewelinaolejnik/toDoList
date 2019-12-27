@@ -69,7 +69,7 @@ export interface DeleteToDoSuccessAction extends ActionType {
 }
 
 export interface AddToDoAction extends ActionType {
-    toDoToAdd: ToDoState
+    toDoToBeAdd: ToDoState
 }
 
 export interface AddToDoSuccessAction extends ActionType {
@@ -77,7 +77,7 @@ export interface AddToDoSuccessAction extends ActionType {
 }
 
 export interface UpdateNewToDoAction extends ActionType {
-    updatedNewToDo: ToDoState,
+    newToDo: ToDoState,
 }
 
 export interface AddToDoErrorsAction extends ActionType {

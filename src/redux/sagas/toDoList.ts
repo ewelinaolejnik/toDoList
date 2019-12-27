@@ -40,7 +40,7 @@ export function* deleteToDoSaga(action: DeleteToDoAction) {
 
 export function* addToDoSaga(action: AddToDoAction) {
     try {
-        const response = yield api.post(endpoint, action.toDoToAdd);
+        const response = yield api.post(endpoint, action.toDoToBeAdd);
         const newToDo: ToDoState = { ...response.data };
         yield put(toDoActions.addToDoSuccess(newToDo));
     } catch (error) {

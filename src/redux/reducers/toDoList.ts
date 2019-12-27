@@ -95,7 +95,7 @@ const toDoListProps = (state: types.ToDoListState = initialState, action: types.
             });
 
         case ToDoListAction.UpdateNewToDo:
-            const updatedNewToDo = (action as types.UpdateNewToDoAction).updatedNewToDo;
+            const updatedNewToDo = (action as types.UpdateNewToDoAction).newToDo;
             return updateState(state, {
                 newToDo: updatedNewToDo
             });

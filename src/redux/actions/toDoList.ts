@@ -36,7 +36,7 @@ export const deleteToDoSuccess = (id: number): types.DeleteToDoSuccessAction => 
 
 export const addToDo = (toDoToAdd: types.ToDoState): types.AddToDoAction => ({
     type: ToDoListAction.AddToDo,
-    toDoToAdd
+    toDoToBeAdd: toDoToAdd
 });
 
 export const addToDoSuccess = (newToDo: types.ToDoState): types.AddToDoSuccessAction => ({
@@ -46,7 +46,7 @@ export const addToDoSuccess = (newToDo: types.ToDoState): types.AddToDoSuccessAc
 
 export const updateNewToDo = (updatedNewToDo: types.ToDoState): types.UpdateNewToDoAction => ({
     type: ToDoListAction.UpdateNewToDo,
-    updatedNewToDo
+    newToDo: updatedNewToDo
 });
 
 export const addToDoErrors = (addToDoErrors: types.AddToDoErrors): types.AddToDoErrorsAction => ({

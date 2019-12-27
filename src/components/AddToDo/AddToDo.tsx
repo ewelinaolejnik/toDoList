@@ -34,7 +34,7 @@ const AddToDoInput = styled.input`
     margin: 10px;
 `;
 
-const AddToDoError = styled.p`
+export const AddToDoError = styled.p`
     flex: 10 0 0px;
     color:red;
 `;
@@ -49,7 +49,7 @@ const AddToDoButton = styled.button`
     margin: 10px;
 `;
 
-const AddToDo: FunctionComponent<AddToDoProps> = ({ newToDo, addToDoErrors, onAddToDo, onUpdateNewToDo }) => {
+export const AddToDo: FunctionComponent<AddToDoProps> = ({ newToDo, addToDoErrors, onAddToDo, onUpdateNewToDo }) => {
     const handleChangeTitle = (event: React.FormEvent<HTMLInputElement>) => {
         const title: string = event.currentTarget.value;
         onUpdateNewToDo({ id: 0, completed: false, title });
