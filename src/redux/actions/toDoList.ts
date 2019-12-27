@@ -1,35 +1,55 @@
 import { ToDoListAction } from './actionTypes';
-import { ActionType, GetToDoListSuccessAction, ToDoState, UpdateToDoSuccessAction, UpdateToDoAction, DeleteToDoAction, DeleteToDoSuccessAction } from '../../types';
+import * as types from '../../types';
 
-export const getToDoList = (): ActionType => ({
+export const getToDoList = (): types.ActionType => ({
     type: ToDoListAction.GetToDoList
 });
 
-export const getToDoListSuccess = (toDoList: Array<ToDoState>): GetToDoListSuccessAction => ({
+export const getToDoListSuccess = (toDoList: Array<types.ToDoState>): types.GetToDoListSuccessAction => ({
     type: ToDoListAction.GetToDoListSuccess,
     toDoList
 });
 
-export const toDoListFailure = (): ActionType => ({
+export const toDoListFailure = (): types.ActionType => ({
     type: ToDoListAction.ToDoListFailure
 });
 
-export const updateToDo = (toDoToBeUpdate: ToDoState): UpdateToDoAction => ({
+export const updateToDo = (toDoToBeUpdate: types.ToDoState): types.UpdateToDoAction => ({
     type: ToDoListAction.UpdateToDo,
     toDoToBeUpdate
 });
 
-export const updateToDoSuccess = (updatedToDo: ToDoState): UpdateToDoSuccessAction => ({
+export const updateToDoSuccess = (updatedToDo: types.ToDoState): types.UpdateToDoSuccessAction => ({
     type: ToDoListAction.UpdateToDoSuccess,
     updatedToDo
 });
 
-export const deleteToDo = (id: number): DeleteToDoAction => ({
+export const deleteToDo = (id: number): types.DeleteToDoAction => ({
     type: ToDoListAction.DeleteToDo,
     id
 });
 
-export const deleteToDoSuccess = (id: number): DeleteToDoSuccessAction => ({
+export const deleteToDoSuccess = (id: number): types.DeleteToDoSuccessAction => ({
     type: ToDoListAction.DeleteToDoSuccess,
     id
+});
+
+export const addToDo = (toDoToAdd: types.ToDoState): types.AddToDoAction => ({
+    type: ToDoListAction.AddToDo,
+    toDoToBeAdd: toDoToAdd
+});
+
+export const addToDoSuccess = (newToDo: types.ToDoState): types.AddToDoSuccessAction => ({
+    type: ToDoListAction.AddToDoSuccess,
+    newToDo
+});
+
+export const updateNewToDo = (updatedNewToDo: types.ToDoState): types.UpdateNewToDoAction => ({
+    type: ToDoListAction.UpdateNewToDo,
+    newToDo: updatedNewToDo
+});
+
+export const addToDoErrors = (addToDoErrors: types.AddToDoErrors): types.AddToDoErrorsAction => ({
+    type: ToDoListAction.AddToDoErrors,
+    addToDoErrors
 });

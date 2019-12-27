@@ -1,39 +1,54 @@
 import { ToDoListAction } from '../actions/actionTypes';
-import { ToDoListState, ActionType, GetToDoListSuccessAction, UpdateToDoSuccessAction, DeleteToDoSuccessAction, ToDoState } from '../../types';
+import * as types from '../../types';
 
 
-const initialState: ToDoListState = {
+const initialState: types.ToDoListState = {
     toDoList: [],
     maxToDoListCount: 10,
     loading: true,
-    error: false
+    error: false,
+    newToDo: {
+        id: 0,
+        title: '',
+        completed: false
+    },
+    addToDoErrors: {
+        maxToDosExceeded: false,
+        newToDoTitleEmpty: false
+    }
 };
 
-const updateState = (oldState: ToDoListState, updatedState: any) => {
+const updateState = (oldState: types.ToDoListState, updatedState: any) => {
     return {
         ...oldState,
         ...updatedState
     }
 };
 
-const updateToDo = (updatedToDo: ToDoState, oldToDoList: ToDoState[]): ToDoState[] => {
+const updateToDo = (updatedToDo: types.ToDoState, oldToDoList: types.ToDoState[]): types.ToDoState[] => {
     const toDoList = [...oldToDoList];
     const updatedToDoIndex = toDoList.findIndex(toDo => toDo.id === updatedToDo.id);
     toDoList[updatedToDoIndex] = updatedToDo;
     return toDoList;
 }
 
-const deleteToDo = (deletedToDoId: number, oldToDoList: ToDoState[]): ToDoState[] => {
+const deleteToDo = (deletedToDoId: number, oldToDoList: types.ToDoState[]): types.ToDoState[] => {
     return oldToDoList.filter(toDo => toDo.id !== deletedToDoId);
 }
 
-const toDoListProps = (state: ToDoListState = initialState, action: ActionType) => {
+const addToDo = (newToDo: types.ToDoState, oldToDoList: types.ToDoState[]) => {
+    const toDoList = [...oldToDoList];
+    toDoList.push(newToDo);
+    return toDoList;
+}
+
+const toDoListProps = (state: types.ToDoListState = initialState, action: types.ActionType) => {
     switch (action.type) {
         case ToDoListAction.GetToDoList:
             return updateState(state, { loading: true });
 
         case ToDoListAction.GetToDoListSuccess:
-            const getToDoListSuccessAction = action as GetToDoListSuccessAction;
+            const getToDoListSuccessAction = action as types.GetToDoListSuccessAction;
             return updateState(state, {
                 toDoList: getToDoListSuccessAction.toDoList,
                 loading: false
@@ -49,7 +64,7 @@ const toDoListProps = (state: ToDoListState = initialState, action: ActionType) 
             return updateState(state, { loading: true });
 
         case ToDoListAction.UpdateToDoSuccess:
-            const updatedToDo = (action as UpdateToDoSuccessAction).updatedToDo;
+            const updatedToDo: types.ToDoState = (action as types.UpdateToDoSuccessAction).updatedToDo;
             return updateState(state, {
                 toDoList: updateToDo(updatedToDo, state.toDoList),
                 loading: false
@@ -59,11 +74,35 @@ const toDoListProps = (state: ToDoListState = initialState, action: ActionType) 
             return updateState(state, { loading: true });
 
         case ToDoListAction.DeleteToDoSuccess:
-            const deletedToDoId = (action as DeleteToDoSuccessAction).id;
+            const deletedToDoId: number = (action as types.DeleteToDoSuccessAction).id;
             return updateState(state, {
                 toDoList: deleteToDo(deletedToDoId, state.toDoList),
                 loading: false
             });
+
+        case ToDoListAction.AddToDo:
+            return updateState(state, {
+                loading: true, newToDo: initialState.newToDo, addToDoErrors: {
+                    maxToDosExceeded: false, newToDoTitleEmpty: false
+                }
+            });
+
+        case ToDoListAction.AddToDoSuccess:
+            const newToDo: types.ToDoState = (action as types.AddToDoSuccessAction).newToDo;
+            return updateState(state, {
+                toDoList: addToDo(newToDo, state.toDoList),
+                loading: false
+            });
+
+        case ToDoListAction.UpdateNewToDo:
+            const updatedNewToDo = (action as types.UpdateNewToDoAction).newToDo;
+            return updateState(state, {
+                newToDo: updatedNewToDo
+            });
+
+        case ToDoListAction.AddToDoErrors:
+            const addToDoErrors = (action as types.AddToDoErrorsAction).addToDoErrors;
+            return updateState(state, { addToDoErrors });
 
         default:
             return state;

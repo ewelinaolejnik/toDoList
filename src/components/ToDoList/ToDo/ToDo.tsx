@@ -96,7 +96,7 @@ export const ToDo: FunctionComponent<ToDoProps> = ({ id, title, completed, onUpd
     );
 };
 
-export const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<ActionType>) => ({
     onUpdateToDo: (toDoToBeUpdate: ToDoState) => dispatch(updateToDo(toDoToBeUpdate)),
     onRemoveToDo: (id: number) => dispatch(deleteToDo(id))
 });
