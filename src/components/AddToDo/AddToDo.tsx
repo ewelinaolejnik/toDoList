@@ -37,7 +37,7 @@ const AddToDoButton = styled.button`
     margin: 10px;
 `;
 
-const AddToDo: FunctionComponent<AddToDoProps> = ({ newToDo, onAddToDo, onUpdateNewToDo }) => {
+const AddToDo: FunctionComponent<AddToDoProps> = ({ newToDo, addToDoErrors, onAddToDo, onUpdateNewToDo }) => {
     const handleChangeTitle = (event: React.FormEvent<HTMLInputElement>) => {
         const title: string = event.currentTarget.value;
         onUpdateNewToDo({ id: 0, completed: false, title });
@@ -47,6 +47,7 @@ const AddToDo: FunctionComponent<AddToDoProps> = ({ newToDo, onAddToDo, onUpdate
         <StyledAddToDo>
             <AddToDoInput value={newToDo.title} onChange={handleChangeTitle} placeholder="New To Do..." />
             <AddToDoButton onClick={() => onAddToDo(newToDo)}>Add To Do</AddToDoButton>
+            {(addToDoErrors.maxToDosExceeded) && <p>Error!</p>}
         </StyledAddToDo>
     );
 };

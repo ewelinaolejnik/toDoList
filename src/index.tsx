@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import rootReducer from './redux/reducers';
 import { watchToDoList } from './redux/sagas';
+import { addToDoValidationMiddleware } from './middleware/toDoListMiddleware';
 
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
@@ -17,7 +18,7 @@ declare global {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(addToDoValidationMiddleware, sagaMiddleware)));
 
 sagaMiddleware.run(watchToDoList);
 

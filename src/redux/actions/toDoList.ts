@@ -47,4 +47,9 @@ export const addToDoSuccess = (newToDo: types.ToDoState): types.AddToDoSuccessAc
 export const updateNewToDo = (updatedNewToDo: types.ToDoState): types.UpdateNewToDoAction => ({
     type: ToDoListAction.UpdateNewToDo,
     updatedNewToDo
-})
+});
+
+export const addToDoErrors = (addToDoErrors: types.AddToDoErrors): types.AddToDoErrorsAction => ({
+    type: ToDoListAction.AddToDoErrors,
+    addToDoErrors
+});

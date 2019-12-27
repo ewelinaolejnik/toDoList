@@ -11,6 +11,10 @@ const initialState: types.ToDoListState = {
         id: 0,
         title: '',
         completed: false
+    },
+    addToDoErrors: {
+        maxToDosExceeded: false,
+        newToDoTitleEmpty: false
     }
 };
 
@@ -91,6 +95,10 @@ const toDoListProps = (state: types.ToDoListState = initialState, action: types.
             return updateState(state, {
                 newToDo: updatedNewToDo
             });
+
+        case ToDoListAction.AddToDoErrors:
+            const addToDoErrors = (action as types.AddToDoErrorsAction).addToDoErrors;
+            return updateState(state, { addToDoErrors });
 
         default:
             return state;

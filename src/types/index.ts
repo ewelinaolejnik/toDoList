@@ -17,7 +17,8 @@ export interface ToDoListState {
     readonly maxToDoListCount: number,
     loading: boolean,
     error: boolean,
-    newToDo: ToDoState
+    newToDo: ToDoState,
+    addToDoErrors: AddToDoErrors
 }
 
 export interface AppState {
@@ -31,8 +32,14 @@ export interface ChangeableToDoListProps {
 
 export interface AddToDoProps {
     newToDo: ToDoState,
+    addToDoErrors: AddToDoErrors,
     onAddToDo: (toDoToBeAdd: ToDoState) => AddToDoAction,
     onUpdateNewToDo: (newToDo: ToDoState) => UpdateNewToDoAction
+}
+
+export interface AddToDoErrors {
+    maxToDosExceeded: boolean,
+    newToDoTitleEmpty: boolean
 }
 
 
@@ -70,5 +77,9 @@ export interface AddToDoSuccessAction extends ActionType {
 }
 
 export interface UpdateNewToDoAction extends ActionType {
-    updatedNewToDo: ToDoState
+    updatedNewToDo: ToDoState,
+}
+
+export interface AddToDoErrorsAction extends ActionType {
+    addToDoErrors: AddToDoErrors,
 }
